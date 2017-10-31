@@ -8,6 +8,7 @@ import UdacityFitnessCalendar from 'udacifitness-calendar'
 import { white } from '../utils/colors'
 import DateHeader from './DateHeader'
 import { AppLoading } from 'expo'
+import MetricCard from './MetricCard'
 
 class History extends Component {
   state = {
@@ -36,8 +37,11 @@ class History extends Component {
                 {today}
               </Text>
             </View>
-          : <TouchableOpacity onPress={() => console.log("Pressed!")}>
-              <Text>{JSON.stringify(metrics)}</Text>
+          : <TouchableOpacity onPress={() => this.props.navigation.navigate(
+            'EntryDetail',
+            { entryId: key }
+          )}>
+              <MetricCard date={formattedDate} metrics={metrics} />
             </TouchableOpacity>
           }
       </View>
